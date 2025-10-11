@@ -1,0 +1,6 @@
+name: Deploy Azure Policy
+on:
+  pull_request:
+    branches:
+      - mian
+
