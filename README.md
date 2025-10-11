@@ -1,1 +1,1 @@
-Policy as Code with Terraform and GitHub Actions.
+Azure policy as code + GitOps CI/CD workflow
