@@ -1,6 +1,37 @@
+# Deploy Azure Policy as Code
 name: Deploy Azure Policy
-on:
-  pull_request:
-    branches:
-      - mian
 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Policy Definition
+        run: |
+          az policy definition create \
+            --name deny-non-eastus \
+            --display-name "Deny resources not in East US" \
+            --description "Deny creation of resources outside East US" \
+            --rules policies/deny-non-eastus-definition.json \
+            --mode All
+
+      - name: Assign Policy
+        run: |
+          az policy assignment create \
+            --name deny-non-eastus-assignment \
+            --policy deny-non-eastus \
+            --params policies/deny-non-east-us-assignment.json \
+            --scope /subscriptions/${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
