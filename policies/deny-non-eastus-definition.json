@@ -1,5 +1,4 @@
 {
-  "properties": {
     "displayName": "Deny resource creation outside East US",
     "policyType": "Custom",
     "mode": "All",
@@ -20,6 +19,4 @@
         "effect": "deny"
       }
     }
-}
-
 }
