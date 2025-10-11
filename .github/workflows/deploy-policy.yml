@@ -23,15 +23,11 @@ jobs:
         run: |
           az policy definition create \
             --name deny-non-eastus \
-            --display-name "Deny resources not in East US" \
-            --description "Deny creation of resources outside East US" \
-            --rules policies/deny-non-eastus-definition.json \
-            --mode All
+            --definition policies/deny-non-eastus-definition.json
 
       - name: Assign Policy
         run: |
           az policy assignment create \
             --name deny-non-eastus-assignment \
             --policy deny-non-eastus \
-            --params policies/deny-non-east-us-assignment.json \
             --scope /subscriptions/${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
