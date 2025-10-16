@@ -1,9 +1,0 @@
-{
-    "properties": {
-        "displayName": "Deny resource creation outside East-US - Assignment",
-        "description": "Assigns deny policy to restrict resource creation outside East-US",
-        "policyDefinitionId": "/subscriptions/83b673ba-b867-4540-81d6-2fea8b419170/providers/Microsoft.Authorization/policyDefinitions/deny-non-eastus",
-        "scope": "/subscriptions/83b673ba-b867-4540-81d6-2fea8b419170",
-        "enforcementMode": "Default"
-    }
-}
